@@ -1,0 +1,4 @@
+# omitting all .o files
+/*/*/*.o
+
+# specific files from homeworks
