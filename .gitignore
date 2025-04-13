@@ -1,4 +1,5 @@
 # omitting all .o files
 /*/*/*.o
 
-# specific files from homeworks
+# textbook because it's freely available on the website
+book.pdf

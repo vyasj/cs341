@@ -2,6 +2,6 @@
 
 This repository contains the code for the homeworks as listed on https://cs341.cs.illinois.edu/coursebook/index.html.
 
-Was recommended to check out this course, and it looks pretty cool. I'm not affiliated with UIUC.
+Was recommended to check out this course, and it looks pretty cool. I'm not affiliated with UIUC. The textbook is freely available on the course's website, which is what I used for everything here. That and Google, of course.
 
 First time using C as well. I wonder how long it'll take before I segfault. UPDATE: It took until chapter 2 of homework 0, but that's because I got set up to fail.
