@@ -1,0 +1,3 @@
+Sample text! This is some sample text for part 5 of Homework 0, Chapter 5. Hopefully the code makes it this far!
+
+The code doesn't seem to be able to see this though. I guess it stops after newline characters.

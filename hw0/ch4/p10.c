@@ -32,11 +32,17 @@ int main() {
     printf("sizeof(p1) = %zu\n", sizeof(*p1));
     printf("list of p1's friends:\n");
     int i = 0;
-    while(p1->friends[i]) {
+    while (p1->friends[i]) {
         printf("p1's friend: %s\n", p1->friends[0]->name);
         i++;
     }
     destroy(p1);
+    printf("is p2 still around?\n");
+    if (p2->age == 256) {
+        printf("yes!\n");
+    } else {
+        printf("no :(\n");
+    }
     destroy(p2);
     return 0;
 }
