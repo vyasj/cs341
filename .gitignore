@@ -1,5 +1,6 @@
 # omitting all .o files
-/*/*/*.o
+/bookfiles/*.o
+/hw0/*/*.o
 
 # textbook because it's freely available on the website
 book.pdf
