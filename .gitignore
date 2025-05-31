@@ -3,6 +3,8 @@
 /bookfiles/*.out
 /hw0/*/*.o
 /hw0/*/*.out
+/mps/*/*.o
+/mps/*/*.out
 
 # textbook because it's freely available on the website
 book.pdf

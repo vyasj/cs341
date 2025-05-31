@@ -96,14 +96,27 @@ char **camel_caser(const char *input) {
     return retHead;
 }
 
+void destroy(char **input) {
+    char **head = input;
+    while (*head) {
+        free(*head);
+        head++;
+    }
+    free(*head);
+    free(input);
+}
+
 int main(int argc, char **argv) {
     char *input = "The Heisenbug is an incredible creature. Facenovel servers get their power from its indeterminism. Code smell can be ignored with INCREDIBLE use of air freshener. God objects are the new religion.";
     char **result = camel_caser(input);
 
-    while (*result) {
-        printf("%s\n", *result);
-        result++;
+    char ** resultHead = result;
+    while (*resultHead) {
+        printf("%s\n", *resultHead);
+        resultHead++;
     }
+
+    destroy(result);
 
     return 0;
 }
