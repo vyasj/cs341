@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <assert.h>
 
 char **camel_caser(const char *input) {
     if(!input) {
@@ -106,7 +107,7 @@ void destroy(char **input) {
     free(input);
 }
 
-int main(int argc, char **argv) {
+void test1() {
     char *input = "The Heisenbug is an incredible creature. Facenovel servers get their power from its indeterminism. Code smell can be ignored with INCREDIBLE use of air freshener. God objects are the new religion.";
     char **result = camel_caser(input);
 
@@ -117,6 +118,33 @@ int main(int argc, char **argv) {
     }
 
     destroy(result);
+}
+
+
+void test2() {
+    char *input = "";
+    char **result = camel_caser(input);
+
+    printf("%s\n", *result);
+
+    destroy(result);
+}
+
+
+void test3() {
+    char *input = NULL;
+    char **result = camel_caser(input);
+
+    printf("%s\n", *result);
+
+    destroy(result);
+}
+
+
+int main(int argc, char **argv) {
+    test1();
+    test2();
+    test3();
 
     return 0;
 }
