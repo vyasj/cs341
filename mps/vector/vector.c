@@ -25,17 +25,19 @@ void push_vector(vector *vec, void *val) {
 
 	if (vec->len > vec->cap) {
 		vec->cap = vec->cap * 2;
+		vec->data = realloc(vec->data, vec->cap);
 	}
 
-	*(vec->data) = val;
+	int **addr = &val;
+	vec->data[vec->len-1] = *addr;
 }
 
 int main() {
 	vector *vec;
 	init_vector(vec);
 
-	int *val = 7;
-	push_vector(vec, val);
+	int val = 7;
+	push_vector(vec, &val);
 
 	free_vector(vec);
 	
