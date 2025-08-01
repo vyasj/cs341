@@ -2,44 +2,44 @@
 #include <stdlib.h>
 
 typedef struct {
-	size_t len; // number of elements in the vec
-	size_t size; // size of the vec in bytes
-	size_t cap; // maximum capacity of the vec in bytes
-	int *data; // list of addresses to each element in the vec
+	size_t len;  // number of elements in the vec
+	size_t size; // size of vec in bytes
+	size_t cap;  // maximum capacity of the vec in bytes
+	void *data;  // pointer to the array of elements
 } vector;
 
-void init_vector(vector *vec) {
+void init_vec(vector *vec) {
 	vec->len = 0;
 	vec->size = 0;
-	vec->cap = sizeof(int*);
-	vec->data = malloc(sizeof(int*));
+	vec->cap = sizeof(void*);
+	vec->data = malloc(sizeof(void*));
 }
 
-void free_vector(vector *vec) {
+void free_vec(vector *vec) {
 	free(vec->data);
 }
 
-void push_vector(vector *vec, void *val) {
-	vec->len++;
-	vec->size = vec->size + sizeof(int);
-
-	if (vec->len > vec->cap) {
+void push_vec(vector *vec, void *val) {
+	if (vec->len+1 > vec->cap) {
 		vec->cap = vec->cap * 2;
-		vec->data = realloc(vec->data, vec->cap);
+		vec->data = realloc(vec->data, vec->size + sizeof(val));
 	}
 
-	int **addr = &val;
-	vec->data[vec->len-1] = *addr;
+	vec->data[vec->len] = val;
+	vec->len += 1;
+	vec->size += sizeof(val);
 }
 
 int main() {
 	vector *vec;
-	init_vector(vec);
+	init_vec(vec);
 
-	int val = 7;
-	push_vector(vec, &val);
+	int *tmp = malloc(sizeof(int*));
+	*tmp = 7;
 
-	free_vector(vec);
-	
+	void *foo = (void *) tmp;
+
+	printf("address of foo: %p\n", foo);
+
 	return 0;
 }
