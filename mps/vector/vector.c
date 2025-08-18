@@ -30,15 +30,13 @@ void push_vec(vector *vec, const void *e) {
 		vec->cap *= 2;
 		vec->data = realloc(vec->data, vec->cap);
 	}
-	void *ptr = vec->data + vec->len;
+	void *ptr = vec->data + (vec->size * vec->len);
 	ptr = memcpy(ptr, e, vec->size);
 	vec->len++;
 }
 
 void *get_vec(vector *vec, size_t idx) {
-	void *ptr;
-	ptr = memcpy(ptr, vec->data + idx, vec->size);
-	return ptr;
+	return vec->data + (idx * vec->size);
 }
 
 int main() {
@@ -55,6 +53,6 @@ int main() {
 		void *e = get_vec(vec, i);
 		printf("vec->data[%d] = %p\n", i, e);
 	}
-	
+
 	return 0;
 }
