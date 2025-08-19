@@ -21,11 +21,23 @@ vector* new_vec(size_t e_size) {
 }
 
 void free_vec(vector *vec) {
+	if (!vec) {
+		printf("Vector is null. Call new_vec() to initialize\n");
+		return;
+	}
 	free(vec->data);
 	free(vec);
 }
 
 void push_vec(vector *vec, const void *e) {
+	if (!vec) {
+		printf("Vector is null. Call new_vec() to initialize.\n");
+		return;
+	}
+	if (sizeof(*e) != vec->size) {
+		printf("Size discrepancy, cannot push element with size %zu to vector with predefined size %zu.\n", sizeof(*e), vec->size);
+		return;
+	}
 	if (vec->len + 1 > vec->cap) {
 		vec->cap *= 2;
 		vec->data = realloc(vec->data, vec->cap);
@@ -36,6 +48,9 @@ void push_vec(vector *vec, const void *e) {
 }
 
 void *get_vec(vector *vec, size_t idx) {
+	if (!vec || vec->len == 0) {
+		printf("Vector is null or has no elements. Call new_vec() to initialize.\n");
+	}
 	return vec->data + (idx * vec->size);
 }
 
@@ -50,8 +65,8 @@ int main() {
 	push_vec(vec, &val2);
 
 	for (int i = 0; i < vec->len; i++) {
-		void *e = get_vec(vec, i);
-		printf("vec->data[%d] = %p\n", i, e);
+		int *e = get_vec(vec, i);
+		printf("vec->data[%d] = %d\n", i, *e);
 	}
 
 	return 0;
