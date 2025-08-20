@@ -54,14 +54,14 @@ int main() {
 	INITIAL_CAPACITY = 8;
 	vector *vec = new_vec(sizeof(int));
 
-	int val = 7;
-	push_vec(vec, &val);
+	int v = 5;
+	push_vec(vec, &v);
 
-	int val2 = 10;
-	push_vec(vec, &val2);
+	v = 10;
+	push_vec(vec, &v);
 
-	double doub = 3.1415;
-	push_vec(vec, &doub);
+	double pi = 3.1415;
+	push_vec(vec, &pi);
 
 	for (int i = 0; i < vec->len; i++) {
 		int *e = get_vec(vec, i);
