@@ -34,10 +34,6 @@ void push_vec(vector *vec, const void *e) {
 		printf("Vector is null. Call new_vec() to initialize.\n");
 		return;
 	}
-	if (sizeof(*e) != vec->size) {
-		printf("Size discrepancy, cannot push element with size %zu to vector with predefined size %zu.\n", sizeof(*e), vec->size);
-		return;
-	}
 	if (vec->len + 1 > vec->cap) {
 		vec->cap *= 2;
 		vec->data = realloc(vec->data, vec->cap);
@@ -63,6 +59,9 @@ int main() {
 
 	int val2 = 10;
 	push_vec(vec, &val2);
+
+	double doub = 3.1415;
+	push_vec(vec, &doub);
 
 	for (int i = 0; i < vec->len; i++) {
 		int *e = get_vec(vec, i);
