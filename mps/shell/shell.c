@@ -1,21 +1,19 @@
-#include <sys/time.h>
-#include <sys/resource.h>
+#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-#include "format.h"
+#include "shell.h"
 
-int main(int argc, char **argv) {
-  // Set resource limits for number of processes
-  // because I do not trust myself to not fork bomb
-  struct rlimit rlim;
-  rlim.rlim_cur = 100;
-  rlim.rlim_max = 250;
-  if (setrlimit(RLIMIT_NPROC, &rlim) != 0) {
-    exit(0);
+void start_shell(char *flag, char *filename) {
+  if (strcmp(flag, "-h")) {
+    printf("history file:%s\n", filename);
+    // TODO: implement history
   }
+  if (strcmp(flag, "-f")) {
+    printf("input file:%s\n", filename);
+    // TODO: implement file
+  }
+}
 
-  arg_error(argc);
-
-  return 0;
+void prompt_input(int pid, char *path) {
+  printf("(pid=%d)%s", pid, path);
 }
