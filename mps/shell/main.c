@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "format.h"
 #include "shell.h"
 
 int main(int argc, char **argv) {
@@ -22,8 +21,8 @@ int main(int argc, char **argv) {
     flag = "";
     filename = "";
   } else if (argc == 3) {
-    flag = strcpy(flag, argv[1]);
-    filename = strcpy(filename, argv[2]);
+    flag = argv[1];
+    filename = argv[2];
   } else {
     printf("Invalid number of flags. Check the README for details.\n");
     exit(1);

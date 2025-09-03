@@ -4,11 +4,11 @@
 #include "shell.h"
 
 void start_shell(char *flag, char *filename) {
-  if (strcmp(flag, "-h")) {
+  if (strcmp(flag, "-h") == 0) {
     printf("history file:%s\n", filename);
     // TODO: implement history
   }
-  if (strcmp(flag, "-f")) {
+  if (strcmp(flag, "-f") == 0) {
     printf("input file:%s\n", filename);
     // TODO: implement file
   }
