@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "shell.h"
 
@@ -28,7 +29,12 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  start_shell(flag, filename);
+  load_file(flag, filename);
 
+  pid_t child = fork();
+  if (child != 0) {
+    prompt_input(child, "/test/path");
+  }
+  
   return 0;
 }
