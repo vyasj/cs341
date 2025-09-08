@@ -1,6 +1,8 @@
+#include <sys/wait.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "shell.h"
 
@@ -15,9 +17,16 @@ void load_file(char *flag, char *filename) {
   }
 }
 
-void prompt_input(int pid, char *path) {
-  printf("(pid=%d)%s$ ", pid, path);
-  fflush(stdout);
-  char *cmd = malloc(sizeof(char));
-  scanf("%s", cmd);
+void prompt_input() {
+  pid_t pid = fork();
+  if (pid == 0) {
+    // in the child process
+    execl("/bin/pwd", "/bin/pwd", NULL);
+    exit(1);
+  } else {
+    // in the parent process
+    printf("(pid=%d)", getpid());
+    int wstatus;
+    waitpid(pid, &wstatus, 0);
+  }
 }

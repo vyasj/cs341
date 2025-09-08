@@ -5,6 +5,6 @@
 void load_file(char *flag, char *filename);
 
 // Print the prompt line and wait for user input.
-void prompt_input(int pid, char *path);
+void prompt_input();
 
 #endif

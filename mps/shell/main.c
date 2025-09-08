@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
   pid_t child = fork();
   if (child != 0) {
-    prompt_input(child, "/test/path");
+    prompt_input();
   }
   
   return 0;
