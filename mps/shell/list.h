@@ -10,7 +10,7 @@ typedef struct {
 } list;
 
 // create a new list
-list new_list(int e_size);
+list* new_list(int e_size);
 
 // free the list
 void free_list(list *l);
@@ -18,7 +18,10 @@ void free_list(list *l);
 // append to the list
 void push_list(list *l, void *e);
 
-// remove from the list at index i
-void pop_list(list *l, int i);
+// fetch from the list at index idx
+void *get_list(list *l, int idx);
+
+// remove from the list at index idx
+void pop_list(list *l, int idx);
 
 #endif
