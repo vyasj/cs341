@@ -17,16 +17,3 @@ void load_file(char *flag, char *filename) {
   }
 }
 
-void prompt_input() {
-  pid_t pid = fork();
-  if (pid == 0) {
-    // in the child process
-    execl("/bin/pwd", "/bin/pwd", NULL);
-    exit(1);
-  } else {
-    // in the parent process
-    printf("(pid=%d)", getpid());
-    int wstatus;
-    waitpid(pid, &wstatus, 0);
-  }
-}

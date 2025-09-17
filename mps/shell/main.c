@@ -17,24 +17,5 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  char *flag, *filename;
-  if (argc == 1) {
-    flag = "";
-    filename = "";
-  } else if (argc == 3) {
-    flag = argv[1];
-    filename = argv[2];
-  } else {
-    printf("Invalid number of flags. Check the README for details.\n");
-    exit(1);
-  }
-
-  load_file(flag, filename);
-
-  pid_t child = fork();
-  if (child != 0) {
-    prompt_input();
-  }
-  
   return 0;
 }
