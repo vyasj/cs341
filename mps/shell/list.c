@@ -28,7 +28,7 @@ void push_list(list *l, void *e) {
     l->cap = 2 * l->cap;
     l->data = realloc(l->data, l->size * l->cap);
   }
-  int *ptr = l->data + (l->size * l->len);
+  void *ptr = l->data + (l->size * l->len);
   ptr = memcpy(ptr, e, l->size);
   l->len++;
 }
@@ -37,8 +37,10 @@ void *get_list(list *l, int idx) {
   return l->data + (l->size * idx);
 }
 
-void pop_list(list *l, int idx) {
-  int *ptr = l->data + (l->size * idx);
-  int *brk = ptr + l->size;
+void *pop_list(list *l) {
+  void *end = l->data + (l->size * l->len);
+  void *nptr;
+  void *ptr = memcpy(l->data + (l->size * l->len), nptr, l->size);
   l->len--;
+  return end;
 }

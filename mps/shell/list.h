@@ -22,6 +22,6 @@ void push_list(list *l, void *e);
 void *get_list(list *l, int idx);
 
 // remove from the list at index idx
-void pop_list(list *l, int idx);
+void *pop_list(list *l);
 
 #endif

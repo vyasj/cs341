@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
 
   list *l = new_list(sizeof(int));
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 10; i++) {
     push_list(l, &i);
   }
 
@@ -16,6 +16,9 @@ int main(int argc, char **argv) {
     int *val = get_list(l, i);
     printf("l[%d]: %d\n", i, *val);
   }
+
+  int *val = pop_list(l);
+  printf("Popped value: %d\n", *val);
 
   return 0;
 }
