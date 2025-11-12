@@ -37,10 +37,21 @@ void *get_list(list *l, int idx) {
   return l->data + (l->size * idx);
 }
 
-void *pop_list(list *l) {
-  void *end = l->data + (l->size * l->len);
-  void *nptr;
-  void *ptr = memcpy(l->data + (l->size * l->len), nptr, l->size);
-  l->len--;
-  return end;
+void set_list(list *l, int idx, void *val) {
+  void *ptr = l->data + (l->size * idx);
+  ptr = memcpy(ptr, val, l->size);
 }
+
+// void *pop_list(list *l) {
+//   void *end;
+//   if (!l) {
+//     return end;
+//   }
+//   if (l->len - 1 < l->cap / 2) {
+//     l->cap = l->cap / 2;
+//     l->data = realloc(l->data, l->size * l->cap);
+//   }
+//   end = memcpy(end, l->data + (l->size * (l->len - 1)), l->size);
+//   l->len--;
+//   return end;
+// }

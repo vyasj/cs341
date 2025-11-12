@@ -21,7 +21,10 @@ void push_list(list *l, void *e);
 // fetch from the list at index idx
 void *get_list(list *l, int idx);
 
+// set value at index idx
+void set_list(list *l, int idx, void *val);
+
 // remove from the list at index idx
-void *pop_list(list *l);
+// void *pop_list(list *l);
 
 #endif
