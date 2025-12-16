@@ -2,6 +2,6 @@
 #define FORMAT_H_
 
 // format and print command prompt string
-void prompt();
+char* prompt(char* input);
 
 #endif

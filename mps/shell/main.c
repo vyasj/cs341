@@ -6,6 +6,8 @@
 #include <unistd.h>
 
 #include "shell.h"
+#include "format.h"
+#include "list.h"
 
 int main(int argc, char **argv) {
   // Set resource limits for number of processes
@@ -16,6 +18,10 @@ int main(int argc, char **argv) {
   if (setrlimit(RLIMIT_NPROC, &rlim) != 0) {
     exit(0);
   }
+
+  char* buf = malloc(256);
+  buf = prompt(buf);
+  free(buf);
 
   return 0;
 }
