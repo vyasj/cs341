@@ -19,9 +19,16 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  char* buf = malloc(256);
-  buf = prompt(buf);
-  free(buf);
+  int save_history = 0;
 
+  while (1) {
+    // if SIGINT, exit loop
+    char* buf = malloc(256);
+    buf = prompt(buf);
+    free(buf);
+  }
+
+  // output history file if specified
+  
   return 0;
 }
