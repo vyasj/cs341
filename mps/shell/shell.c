@@ -6,15 +6,26 @@
 
 #include "shell.h"
 
-void load_file(char *flag, char *filename) {
-  if (strcmp(flag, "-h") == 0) {
-    printf("history file:%s\n", filename);
-    // TODO: open filestream and write each command to new line
-  } else if (strcmp(flag, "-f") == 0) {
-    printf("input file:%s\n", filename);
-    // TODO: read file line by line and execute commands
-  } else {
-    // TODO: call function in format.h to output error message
+void load_file(char *filename) {
+  FILE *fp = fopen(filename, "r");
+  char *line = NULL;
+  size_t size = 0;
+  ssize_t nread;
+
+  while ((nread = getline(&line, &size, fp)) != -1) {
+    printf("Read line of length %zd\n", nread);
+    printf("Line:\n>\t%s\n", line);
+    cycle(line);
   }
+
+  free(line);
 }
 
+void write_cmd(char *filename, char* cmd) {
+  FILE *fd = fopen(filename, "a");
+}
+
+int cycle(char* cmd) {
+  // fork-exec-wait cycle
+  return 0;
+}
