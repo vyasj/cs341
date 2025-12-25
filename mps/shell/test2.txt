@@ -1,0 +1,7 @@
+hello
+this is another test
+for inputting lines
+ensure that whitespace stays in the same line
+the last line was long
+hope it worked
+exit
