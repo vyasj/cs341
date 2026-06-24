@@ -3,16 +3,13 @@
 
 #include <stdio.h>
 
+#include "vec.h"
+
+typedef struct {
+    vector *proc_ids; // vector of process ids currently running in the shell
+} shell;
+
 // prompt user for input
 char* prompt();
-
-// -f flag used, load file and run all commands
-void read_file(FILE *fd);
-
-// -h flag used, output history to file
-void write_file(FILE *fd, char* cmd);
-
-// fork-exec-wait cycle
-int cycle(char* cmd);
 
 #endif
