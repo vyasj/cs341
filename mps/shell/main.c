@@ -18,24 +18,19 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // Read flag arguments
-  int save_history = 0;
-  FILE *fd;
-  if (argc > 3) {
-    fprintf(stderr, "Only one flag accepted, either -f or -h.\n");
-    return -1;
-  } else {
-    if (argc == 3) {
-      if (strcmp(argv[1], "-f") == 0) {
-        // execute file
-      } else if (strcmp(argv[1], "-h") == 0) {
-        // load history, append new commands to file
-      } else {
-        fprintf(stderr, "Error: unrecognized flags. Use either -f or -h.\n");
-        return -1;
-      }
-    }
-  }
+  // 1. Read flag arguments
+  // 2. Start while loop until SIGINT
+  // 3. Prompt user for input
+  // 4. Scan if input is custom command
+  // 5. Fork a process to run the command
+  // 6. Execute the command
+  // 7. Wait until the process completes
+
+  printf("printed once\n");
+
+  fork();
+
+  printf("printed twice\n");
   
   return 0;
 }
