@@ -9,9 +9,13 @@
 typedef struct {
     vector *proc_ids;   // vector of process ids currently running in the shell
     FILE *history;      // file pointer to history file
+    char *dir;          // operating directory of the shell
 } shell;
 
+// create an empty shell
+shell *spawn_shell();
+
 // prompt user for input
-char* prompt();
+char* prompt(shell *sh);
 
 #endif
