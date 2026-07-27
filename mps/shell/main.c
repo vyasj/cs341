@@ -19,6 +19,26 @@ int main(int argc, char **argv) {
 //   }
 
   // 1. Read flag arguments
+  int c;
+  char *ifile, *ofile;
+  while ((c = getopt(argc, argv, "f:h:")) != -1) {
+    switch (c) {
+    case 'f':
+      ifile = optarg;
+      printf("Reading history file %s\n", ifile);
+      break;
+    case 'h':
+      ofile = optarg;
+      printf("Writing to history file %s\n", ofile);
+      break;
+    case ':':
+      printf("Need an argument after the option %c\n", c);
+      break;
+    case '?':
+      printf("Error: Incorrect option flag use. Supported options are:\n\t-f\t\tInput history file to read\n\t-h\t\tOutput history file to write to\n");
+      break;
+    }
+  }
   // 2. Start while loop until SIGINT
   // 3. Prompt user for input
   // 4. Scan if input is custom command
