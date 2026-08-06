@@ -5,18 +5,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include "shell.h"
 
+volatile sig_atomic_t sigint_rcvd = 0;
+
+static void handler(int sig) {
+  if (sig == SIGINT) {
+    sigint_rcvd = 1;
+  }
+}
+
 int main(int argc, char **argv) {
-  // Set resource limits for number of processes
-  // because I do not trust myself to not fork bomb
-//   struct rlimit rlim;
-//   rlim.rlim_cur = 100;
-//   rlim.rlim_max = 250;
-//   if (setrlimit(RLIMIT_NPROC, &rlim) != 0) {
-//     exit(0);
-//   }
 
   // 1. Read flag arguments
   int c;
@@ -39,18 +40,34 @@ int main(int argc, char **argv) {
       break;
     }
   }
-  // 2. Start while loop until SIGINT
-  // 3. Prompt user for input
+
+  // 2. Start while loop until SIGINT, "exit", or EOF
+  shell *sh = spawn_shell();
+
+  struct sigaction sa;
+  sa.sa_handler = handler;
+  sigemptyset(&sa.sa_mask);
+  sa.sa_flags = 0;
+  sigaction(SIGINT, &sa, NULL);
+  
+  while (1) {
+    // 3. Prompt user for input
+    char *input = prompt(sh);
+
+    if (sigint_rcvd) {
+      printf("sigint received\n");
+      break;
+    }
+
+    if (strcmp(input, "exit") == 0) {
+      break;
+    }
+  }
+
   // 4. Scan if input is custom command
   // 5. Fork a process to run the command
   // 6. Execute the command
   // 7. Wait until the process completes
-
-  shell *sh = spawn_shell();
-
-  while (1) {
-    char *input = prompt(sh);
-  }
   
   return 0;
 }

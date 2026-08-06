@@ -14,7 +14,7 @@ Every command should be stored in a history unless explicitly told otherwise. Th
 ### `exit`
 The shell exits when the `exit` command is run or when it receives an `EOF` at the beginning of a line. `exit` should not be stored in the history.
 ### `ctrl+C`
-The shell should just kill the running foreground process, if there is one. `ctrl-C` should not kill the shell program.
+The shell should just kill the running foreground process, if there is one. `ctrl+C` should not kill the shell program.
 ### Built-in commands and proper failure messages on error:
 1. `cd <path>` behaves normally
 2. `!history` prints out each command in the history, but should not be stored in the shell history
