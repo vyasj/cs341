@@ -18,4 +18,7 @@ shell *spawn_shell();
 // prompt user for input
 char* prompt(shell *sh);
 
+// fork-exec-wait cycle
+void cycle(shell *sh);
+
 #endif

@@ -27,3 +27,15 @@ char* prompt(shell *sh) {
   
   return line;
 }
+
+void cycle(shell *sh) {
+  pid_t pid = fork();
+  if (pid > 0) {
+    printf("Command executed by pid=%d\n", pid);
+    push_vec(sh->proc_ids, &pid);
+  } else if (pid == 0) {
+    // execlp()
+  } else {
+    printf("Failed to fork.\n");
+  }
+}

@@ -24,20 +24,27 @@ int main(int argc, char **argv) {
   char *ifile, *ofile;
   while ((c = getopt(argc, argv, "f:h:")) != -1) {
     switch (c) {
-    case 'f':
-      ifile = optarg;
-      printf("Reading history file %s\n", ifile);
-      break;
-    case 'h':
-      ofile = optarg;
-      printf("Writing to history file %s\n", ofile);
-      break;
-    case ':':
-      printf("Need an argument after the option %c\n", c);
-      break;
-    case '?':
-      printf("Error: Incorrect option flag use. Supported options are:\n\t-f\t\tInput history file to read\n\t-h\t\tOutput history file to write to\n");
-      break;
+      case 'f':
+        ifile = optarg;
+        printf("Loading history file %s\n", ifile);
+        FILE *f = fopen(ifile, "a+");
+        char *line = NULL;
+        size_t size = 0;
+        ssize_t read;
+        while ((read = getline(&line, &size, f)) != -1) {
+          printf("%s", line);
+        }
+        break;
+      case 'h':
+        ofile = optarg;
+        printf("Writing to history file %s\n", ofile);
+        break;
+      case ':':
+        printf("Need an argument after the option %c\n", c);
+        break;
+      case '?':
+        printf("Error: Incorrect option flag use. Supported options are:\n\t-f\t\tInput history file to read\n\t-h\t\tOutput history file to write to\n");
+        break;
     }
   }
 
@@ -51,20 +58,20 @@ int main(int argc, char **argv) {
   sigaction(SIGINT, &sa, NULL);
   
   while (1) {
-    // 3. Prompt user for input
+    // 3. Prompt user for input and parse
     char *input = prompt(sh);
 
+    // 4. Scan input
+
     if (sigint_rcvd) {
-      printf("sigint received\n");
-      break;
+      printf("Received SIGINT. Shutting down foreground process.\n");
     }
 
-    if (strcmp(input, "exit") == 0) {
+    if (strcmp(input, "exit\n") == 0) {
       break;
     }
   }
 
-  // 4. Scan if input is custom command
   // 5. Fork a process to run the command
   // 6. Execute the command
   // 7. Wait until the process completes
